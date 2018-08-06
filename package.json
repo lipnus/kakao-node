@@ -1,0 +1,37 @@
+{
+  "name": "hmtr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "^4.15.5",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.6.4",
+    "request": "^2.87.0",
+    "serve-favicon": "~2.4.5"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "@angular/cli": "^6.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipnus/ut-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lipnus/ut-node/issues"
+  },
+  "homepage": "https://github.com/lipnus/ut-node#readme"
+}

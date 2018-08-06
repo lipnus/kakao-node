@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.ejs</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Value: <%= testValue %></h1>
+
+    android/user으로 POST
+
+    <br/><br/><br/>
+
+
+
+    <form action="" method="post">
+       <div> - sequence: <input type="text" name="sequence"> </div><br/>
+    </form>
+
+    <button class="sendbtn">전송</button>
+    <div class="result"></div>
+
+<!-- =========================================================================== -->
+<!-- =========================================================================== -->
+
+    <script>
+        document.querySelector('.sendbtn').addEventListener('click', function(e) {
+
+          var sequence = document.getElementsByName('sequence')[0].value;
+
+          var jsonStr = {
+            'script_pk':4,
+            'sequence':sequence,
+            'userinfo_pk':1,
+            'answer':1};
+
+          console.log("JSON전송: " + jsonStr);
+
+          sendAjax('/android/chat_behavior', jsonStr);
+        })
+
+
+        function sendAjax(url, data){
+
+          data = JSON.stringify(data);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', url);
+          xhr.setRequestHeader('content-type', "application/json");
+          xhr.send(data);
+
+          console.log("sendAjax(): " + data);
+
+
+          // 데이터 수신이 완료되면 표시
+          xhr.addEventListener('load', function(){
+            var result = JSON.parse(xhr.responseText);
+            var resultDiv = document.querySelector('.result');
+
+            resultDiv.innerHTML = xhr.responseText;
+          });
+        }
+
+    </script>
+
+  </body>
+</html>

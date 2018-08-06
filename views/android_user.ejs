@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.ejs</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Value: <%= testValue %></h1>
+
+    android/user으로 POST
+
+    <br/><br/><br/>
+
+
+
+    <form action="" method="post">
+       <div> - name: <input type="text" name="name"> </div><br/>
+       <div> - birth: <input type="text" name="birth"> </div><br/>
+       <div> - count: <input type="text" name="count"> </div><br/>
+    </form>
+
+    <button class="sendbtn">전송</button>
+    <div class="result"></div>
+
+    <br/><br/><br/>
+
+    <button class="sendbtn2">날짜</button>
+    <div class="ddd"></div>
+
+
+<!-- =========================================================================== -->
+<!-- =========================================================================== -->
+
+    <script>
+        document.querySelector('.sendbtn').addEventListener('click', function(e) {
+
+          var input1 = document.getElementsByName('name')[0].value;
+          var input2 = document.getElementsByName('birth')[0].value;
+          var count = document.getElementsByName('count')[0].value;
+
+
+          var jsonStr = {
+            'user_name':input1,
+            'user_birth':input2,
+            'user_phone':"01027151024",
+            'user_email':"sunpil13@naver.com",
+            'group_name':"기안초등학교",
+            'user_count':count};
+
+          console.log("JSON전송: " + jsonStr);
+
+          sendAjax('/android/user', jsonStr);
+        })
+
+
+        function sendAjax(url, data){
+
+          data = JSON.stringify(data);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', url);
+          xhr.setRequestHeader('content-type', "application/json");
+          xhr.send(data);
+
+          console.log("sendAjax(): " + data);
+
+
+          // 데이터 수신이 완료되면 표시
+          xhr.addEventListener('load', function(){
+            var result = JSON.parse(xhr.responseText);
+            var resultDiv = document.querySelector('.result');
+
+            resultDiv.innerHTML = xhr.responseText;
+          });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //날짜테스트
+        document.querySelector('.sendbtn2').addEventListener('click', function(e) {
+
+          getTimeStamp();
+
+        })
+
+
+        function getTimeStamp() {
+            var d = new Date();
+
+            var date = leadingZeros(d.getFullYear(), 4) +
+                leadingZeros(d.getMonth() + 1, 2) +
+                leadingZeros(d.getDate(), 2);
+
+            var time = leadingZeros(d.getHours(), 2) + ':' +
+                leadingZeros(d.getMinutes(), 2) + ':' +
+                leadingZeros(d.getSeconds(), 2);
+
+            var resultDiv = document.querySelector('.ddd');
+            resultDiv.innerHTML = "date: " + date + ", time: " + time ;
+        }
+
+
+
+        function leadingZeros(n, digits) {
+            var zero = '';
+            n = n.toString();
+
+            if (n.length < digits) {
+                for (i = 0; i < digits - n.length; i++){
+                    zero += '0';
+                }
+            }
+            return zero + n;
+        }
+
+    </script>
+
+  </body>
+</html>
