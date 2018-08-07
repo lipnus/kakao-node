@@ -27,8 +27,7 @@ router.post('/', function(req,res){
 	var query = connection.query(sql, factor, function(err, rows){
 		if(err) throw err;
 
-
-      console.log("음악데이터 다운로드");
+ 
       let responseData = {};
       let musicData = {
 				music_pk: rows[0].pk,

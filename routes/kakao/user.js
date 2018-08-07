@@ -10,16 +10,11 @@ var connection = config.db_connection;
 
 
 
-// router.get('/', function(req, res){
-//   console.log("test.js GET")
-//   res.render('mainpage', {'testValue' : "sound_list"})
-// });
 
 
 router.post('/download', function(req,res){
 
 	let user_pk = req.body.user_pk;
-  console.log("유저데이터 다운로드: " + user_pk);
 
 	//사용자정보를 다운로드
 	var sql = 'SELECT * FROM `user` WHERE pk=?';
@@ -43,7 +38,6 @@ router.post('/download', function(req,res){
         m_order: rows[0].m_order,
 			};
       responseData.userData = userData;
-
 			res.json( responseData );
 	});//sql
 });//post
@@ -52,25 +46,31 @@ router.post('/download', function(req,res){
 
 
 
-
-
-
-
-
 router.post('/', function(req,res){
 
 	let userData = req.body.userData;
+  console.log(userData);
 
-  //like_count변경[1]
-	sql = 'UPDATE user SET like_count=like_count + ? WHERE pk=?';
-	factor = [heart, sound_pk];
+	sql = 'UPDATE user SET score_best=?, score_stage=?, stage=?, life=?,item1=?,item2=?,item3=?,m_order=? WHERE pk=?';
+	factor = [
+    userData.score_best,
+    userData.score_stage,
+    userData.stage,
+    userData.life,
+    userData.item1,
+    userData.item2,
+    userData.item3,
+    userData.m_order,
+    userData.user_pk
+  ];
 	query = connection.query(sql, factor, function(err, rows){
 		if(err) throw err;
 
+    console.log("음...");
+    responseData = {result:"ok"};
+    res.json( responseData );
+
   });//sql
-
-
-
 });//post
 
 

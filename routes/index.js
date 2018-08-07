@@ -15,6 +15,7 @@ var router = express.Router()
 //카카오
 var user = require('./kakao/user');
 var music = require('./kakao/music');
+var join = require('./kakao/join');
 
 
 
@@ -41,6 +42,7 @@ router.get('/', function(req, res, next) {
 
 router.use('/user', user);
 router.use('/music', music);
+router.use('/join', join);
 
 
 
