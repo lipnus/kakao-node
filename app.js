@@ -59,7 +59,7 @@ app.use(function(err, req, res, next) {
 // ------- creates Server -------
 // module.exports = app;
 var server = app.listen(app.get('port'), function() {
-  console.log('Start 제품시스템디자인 UT Server on port ' + server.address().port);
+  console.log('Start KAKAO공모전 Server on port ' + server.address().port);
 });
 
 
