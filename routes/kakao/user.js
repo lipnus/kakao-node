@@ -10,17 +10,16 @@ var connection = config.db_connection;
 
 
 
-router.get('/', function(req, res){
-  console.log("test.js GET")
-  res.render('mainpage', {'testValue' : "sound_list"})
-});
-
-
+// router.get('/', function(req, res){
+//   console.log("test.js GET")
+//   res.render('mainpage', {'testValue' : "sound_list"})
+// });
 
 
 router.post('/download', function(req,res){
 
 	let user_pk = req.body.user_pk;
+  console.log("유저데이터 다운로드: " + user_pk);
 
 	//사용자정보를 다운로드
 	var sql = 'SELECT * FROM `user` WHERE pk=?';
@@ -28,7 +27,7 @@ router.post('/download', function(req,res){
 	var query = connection.query(sql, factor, function(err, rows){
 		if(err) throw err;
 
-      console.log("유저데이터 다운로드");
+
       let responseData = {};
       let userData = {
 				user_pk: rows[0].pk,
@@ -67,7 +66,7 @@ router.post('/', function(req,res){
 	factor = [heart, sound_pk];
 	query = connection.query(sql, factor, function(err, rows){
 		if(err) throw err;
-    
+
   });//sql
 
 
