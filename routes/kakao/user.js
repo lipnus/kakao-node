@@ -36,6 +36,10 @@ router.post('/download', function(req,res){
         item2: rows[0].item2,
         item3: rows[0].item3,
         m_order: rows[0].m_order,
+				perfect: rows[0].perfect,
+				great: rows[0].great,
+				bad: rows[0].bad
+
 			};
       responseData.userData = userData;
 			res.json( responseData );
