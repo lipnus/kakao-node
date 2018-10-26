@@ -4,16 +4,9 @@ var router = express.Router(); // 라우터처리
 var path = require('path') // 상대경로
 var mysql = require('mysql') //express에 가면 mysql연동 정보가 있음
 
-// AWS RDS연결
-var connection = mysql.createConnection({
-	host : 'allthebeat.csygoyq4caou.ap-northeast-2.rds.amazonaws.com',
-	port : 3306,
-	user : 'allthebeat',
-	password : '1q2w3e4r!',
-	database : 'allthebeat'
-})
-
-connection.connect();
+// mysql연결
+var config = require('./function/config.js'); // AWS RDS연결
+var connection = config.db_connection;
 
 var nodePath = "http://ec2-13-125-247-213.ap-northeast-2.compute.amazonaws.com:9000";
 var angularPath = "http://allthebeat.com/#";

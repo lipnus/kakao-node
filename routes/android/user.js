@@ -8,23 +8,9 @@ var mysql = require('mysql') //express에 가면 mysql연동 정보가 있음
 //간단한 함수들을 모아놓음
 var simpleFunction = require('./jsfile/simple_function');
 
-// // // LOCAL DATABASE SETTING
-// var connection = mysql.createConnection({
-//   host: 'localhost',
-//   port: 3306,
-//   user: 'root',
-//   password: '1111',
-//   database: 'lipnus'
-// })
-
-// // AWS DATABASE SETTING
-var connection = mysql.createConnection({
-	host : 'hmtr-rds.cf3wzzk28tgn.ap-northeast-2.rds.amazonaws.com',
-	port : 3306,
-	user : 'humentory',
-	password : 'humentory4132*',
-	database : 'hmtr_db'
-})
+// mysql연결
+var config = require('./function/config.js'); // AWS RDS연결
+var connection = config.db_connection;
 
 
 connection.connect();
